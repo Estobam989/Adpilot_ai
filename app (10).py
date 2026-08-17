@@ -18,7 +18,7 @@ except Exception:
 if not API_KEY:
     st.warning("Enter your Gemini API key to start.")
     st.stop()
-client = genai.Client(api_key=API_KEY)
+client = genai.Client(AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ)
 # -----------------------------
 # SIDEBAR
 # -----------------------------
