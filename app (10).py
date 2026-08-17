@@ -1,5 +1,3 @@
-import streamlit as st
-from google import google.genai
 # app.py
 import streamlit as st
 from google import google.genai
