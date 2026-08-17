@@ -1,13 +1,10 @@
 # app.py
 import streamlit as st
-from google import google.genai
-
 st.set_page_config(
     page_title="AdPilot AI",
     page_icon="🚀",
     layout="wide"
 )
-
 # -----------------------------
 # AI CONFIGURATION
 # -----------------------------
@@ -18,18 +15,14 @@ except Exception:
         "Enter Gemini API Key",
         type="password"
     )
-
 if not API_KEY:
     st.warning("Enter your Gemini API key to start.")
     st.stop()
-
 client = genai.Client(api_key=API_KEY)
-
 # -----------------------------
 # SIDEBAR
 # -----------------------------
 st.sidebar.title("🚀 AdPilot AI")
-
 menu = st.sidebar.radio(
     "Choose a service",
     [
@@ -41,39 +34,29 @@ menu = st.sidebar.radio(
         "Marketing Analytics"
     ]
 )
-
 # -----------------------------
 # AI FUNCTION
 # -----------------------------
 def ask_ai(prompt):
-
     response = client.models.generate_content(
         model="gemini-3.1-flash-lite",
         contents=prompt
     )
-
     return response.text
-
-
 # -----------------------------
 # AI AD GENERATOR
 # -----------------------------
 if menu == "AI Ad Generator":
-
     st.title("🎯 AI Advertisement Generator")
-
     business = st.text_input(
         "Business / Brand Name"
     )
-
     product = st.text_area(
         "What are you advertising?"
     )
-
     audience = st.text_input(
         "Target Audience"
     )
-
     platform = st.selectbox(
         "Advertising Platform",
         [
@@ -84,7 +67,6 @@ if menu == "AI Ad Generator":
             "WhatsApp"
         ]
     )
-
     objective = st.selectbox(
         "Campaign Objective",
         [
@@ -96,22 +78,16 @@ if menu == "AI Ad Generator":
             "Product Launch"
         ]
     )
-
     if st.button("✨ Generate Advertisement"):
-
         prompt = f"""
         You are an expert digital advertising strategist.
-
         Create a high-converting advertisement for:
-
         Brand: {business}
         Product/Service: {product}
         Target Audience: {audience}
         Platform: {platform}
         Objective: {objective}
-
         Produce:
-
         1. Primary advertisement copy
         2. Attention-grabbing headline
         3. Short version
@@ -122,33 +98,24 @@ if menu == "AI Ad Generator":
         8. Suggested audience targeting
         9. A WhatsApp version
         10. A TikTok/Reels version
-
         Make the advertisement persuasive,
         professional and suitable for the Nigerian market.
         """
-
         with st.spinner("Creating campaign..."):
             result = ask_ai(prompt)
-
         st.success("Advertisement generated!")
         st.markdown(result)
-
-
 # -----------------------------
 # SOCIAL MEDIA POST
 # -----------------------------
 elif menu == "Social Media Post":
-
     st.title("📱 AI Social Media Manager")
-
     brand = st.text_input("Brand")
     topic = st.text_area("What should the post be about?")
-
     platform = st.selectbox(
         "Platform",
         ["Instagram", "Facebook", "TikTok", "LinkedIn", "WhatsApp"]
     )
-
     tone = st.selectbox(
         "Tone",
         [
@@ -160,19 +127,14 @@ elif menu == "Social Media Post":
             "Bold"
         ]
     )
-
     if st.button("Generate Post"):
-
         prompt = f"""
         Act as a professional social media manager.
-
         Brand: {brand}
         Topic: {topic}
         Platform: {platform}
         Tone: {tone}
-
         Create:
-
         - Strong hook
         - Main post
         - CTA
@@ -180,20 +142,14 @@ elif menu == "Social Media Post":
         - Short version
         - Engagement question
         """
-
         with st.spinner("Writing content..."):
             result = ask_ai(prompt)
-
         st.markdown(result)
-
-
 # -----------------------------
 # CONTENT CALENDAR
 # -----------------------------
 elif menu == "Content Calendar":
-
     st.title("📅 AI Content Calendar")
-
     brand = st.text_input("Brand name")
     industry = st.text_input("Industry")
     days = st.slider(
@@ -202,17 +158,12 @@ elif menu == "Content Calendar":
         30,
         7
     )
-
     if st.button("Create Content Calendar"):
-
         prompt = f"""
         Create a {days}-day social media content calendar.
-
         Brand: {brand}
         Industry: {industry}
-
         Create columns for:
-
         Day
         Content Pillar
         Topic
@@ -221,24 +172,17 @@ elif menu == "Content Calendar":
         CTA
         Platform
         Content Format
-
         Make the strategy focused on:
         awareness, engagement, leads and sales.
         """
-
         with st.spinner("Building content calendar..."):
             result = ask_ai(prompt)
-
         st.markdown(result)
-
-
 # -----------------------------
 # CAMPAIGN STRATEGY
 # -----------------------------
 elif menu == "Campaign Strategy":
-
     st.title("📈 AI Campaign Strategist")
-
     business = st.text_input("Business")
     product = st.text_area("Product / Service")
     budget = st.number_input(
@@ -246,18 +190,13 @@ elif menu == "Campaign Strategy":
         min_value=0,
         value=100000
     )
-
     if st.button("Build Campaign"):
-
         prompt = f"""
         Act as a senior digital marketing strategist.
-
         Business: {business}
         Product: {product}
         Monthly budget: ₦{budget}
-
         Build a complete advertising strategy including:
-
         1. Campaign objective
         2. Target audience
         3. Customer personas
@@ -270,36 +209,24 @@ elif menu == "Campaign Strategy":
         10. Retargeting strategy
         11. KPIs
         12. 30-day execution plan
-
         Optimize for the Nigerian market.
         """
-
         with st.spinner("Developing strategy..."):
             result = ask_ai(prompt)
-
         st.markdown(result)
-
-
 # -----------------------------
 # AUDIENCE RESEARCH
 # -----------------------------
 elif menu == "Audience Research":
-
     st.title("👥 AI Audience Research")
-
     product = st.text_area(
         "Describe your product or service"
     )
-
     if st.button("Research Audience"):
-
         prompt = f"""
         Analyze the target market for:
-
         {product}
-
         Identify:
-
         - Ideal customer
         - Age
         - Location
@@ -313,26 +240,19 @@ elif menu == "Audience Research":
         - Content themes
         - Conversion strategy
         """
-
         with st.spinner("Analyzing audience..."):
             result = ask_ai(prompt)
-
         st.markdown(result)
-
-
 # -----------------------------
 # ANALYTICS
 # -----------------------------
 elif menu == "Marketing Analytics":
-
     st.title("📊 AI Marketing Analyst")
-
     data = st.text_area(
         "Paste your campaign statistics",
         height=250,
         placeholder="""
         Example:
-
         Impressions: 25,000
         Reach: 18,000
         Clicks: 1,200
@@ -341,18 +261,12 @@ elif menu == "Marketing Analytics":
         Ad Spend: ₦150,000
         """
     )
-
     if st.button("Analyze Campaign"):
-
         prompt = f"""
         Act as a digital marketing data analyst.
-
         Analyze this campaign:
-
         {data}
-
         Explain:
-
         - Campaign performance
         - Conversion rate
         - Lead quality
@@ -362,8 +276,6 @@ elif menu == "Marketing Analytics":
         - Budget recommendations
         - Next campaign strategy
         """
-
         with st.spinner("Analyzing campaign..."):
             result = ask_ai(prompt)
-
         st.markdown(result)
