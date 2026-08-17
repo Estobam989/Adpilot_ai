@@ -12,13 +12,13 @@ try:
     API_KEY = st.secrets["AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ"]
 except Exception:
     API_KEY = st.text_input(
-        "AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ",
+        "Enter Gemini API Key",
         type="password"
     )
 if not API_KEY:
     st.warning("Enter your Gemini API key to start.")
     st.stop()
-client = genai.Client(AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ)
+client = genai.Client(api_key=API_KEY)
 # -----------------------------
 # SIDEBAR
 # -----------------------------
