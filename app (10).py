@@ -1,5 +1,6 @@
 # app.py
 import streamlit as st
+import google.genai as genai
 st.set_page_config(
     page_title="AdPilot AI",
     page_icon="🚀",
