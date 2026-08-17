@@ -12,7 +12,7 @@ try:
     API_KEY = st.secrets["AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ"]
 except Exception:
     API_KEY = st.text_input(
-        "Enter Gemini API Key",
+        "AQ.Ab8RN6KIg0lWsVc_3MC9BO-aCqUWhWFCHV3QyF9v6rjMFE4orQ",
         type="password"
     )
 if not API_KEY:
